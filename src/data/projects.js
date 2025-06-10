@@ -6,7 +6,7 @@ export const projects = [
     },
     {
         title: 'TextEditor',
-        description: 'A simple Texteditor i wrote in C. In the future i want to change it into a Vim Clone',
+        description: 'A simple Texteditor i wrote in C. In the future i want to change it into a Vim Clone.',
         link: 'https://github.com/luddi770/TextEditor_C'
     }
 ];

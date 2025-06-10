@@ -8,7 +8,7 @@ import Contact from './pages/Contact';
 
 export default function App() {
   return (
-    <Router>
+    <>
       <nav className="justify-between p-4 bg-gray-800 text-white flex gap-4">
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
@@ -21,6 +21,6 @@ export default function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-    </Router>
+    </>
   );
 }
