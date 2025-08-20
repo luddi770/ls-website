@@ -4,10 +4,13 @@ import { useEffect } from "react";
 import { Mail } from "lucide-react";
 import github from '../assets/github-mark-white.png';
 import linkedin from '../assets/inBug-white.png';
+import { useTranslation } from 'react-i18next';
 
 
 export default function Home() {
     const [visible, setVisible] = useState(false);
+
+    const { t, i18n } = useTranslation();
 
     useEffect(() => {
         // Trigger the slide-in animation after component mounts
@@ -22,8 +25,8 @@ export default function Home() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-700 text-white p-8">
             <div className="p-8">
-                <h1 className="text-5xl font-bold mb-4 flex justify-center">Hi, I'm Ludwig Steinhorst</h1>
-                <p className="mt-2 flex justify-center mb-4">Software Engineer & Web Developer</p>
+                <h1 className="text-5xl font-bold mb-4 flex justify-center">{t("main-introduction")}</h1>
+                <p className="mt-2 flex justify-center mb-4">{t("main-description")}</p>
                 <div className="flex justify-center gap-4 mt-4">
                     <a href="mailto:lusteinhorst1@gmail.com"><Mail /></a>
                     <a href="https://github.com/luddi770" target="_blank"><img src={github} alt="Github" width={24} height={24} /></a>

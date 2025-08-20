@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
+import { useTranslation } from 'react-i18next';
 
 const ContactForm = () => {
     const {
@@ -64,10 +65,12 @@ const ContactForm = () => {
         }
     };
 
+    const { t, i18n } = useTranslation();
+
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-700 text-white p-8">
+        <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-700 text-white p-8 m-0">
             <div className="ContactForm p-8">
-                <h2 className='text-3xl font-semibold mb-6 text-center'>Contact Me</h2>
+                <h2 className='text-3xl font-semibold mb-6 text-center'>{t("contact-header")}</h2>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col items-center">
                         <div className="w-full text-center">
@@ -78,7 +81,7 @@ const ContactForm = () => {
                                     noValidate
                                     className="space-y-6"
                                 >
-                                    {/* Row 1 of form */}
+                                    
                                     <div className="flex flex-wrap -mx-2">
                                         <div className="w-full md:w-1/2 px-2 mb-4">
                                             <input
@@ -87,11 +90,11 @@ const ContactForm = () => {
                                                 {...register("name", {
                                                     required: {
                                                         value: true,
-                                                        message: "Please enter your name",
+                                                        message: t("contact-error-name"),
                                                     },
                                                     maxLength: {
                                                         value: 30,
-                                                        message: "Please use 30 characters or less",
+                                                        message: t("contact-error-name-length"),
                                                     },
                                                 })}
                                                 className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -113,17 +116,17 @@ const ContactForm = () => {
                                                         /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                                                 })}
                                                 className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                placeholder="Email address"
+                                                placeholder={t("contact-email-input")}
                                             />
                                             {errors.email && (
                                                 <span className="text-red-600 text-sm">
-                                                    Please enter a valid email address
+                                                    {t("contact-error-email")}
                                                 </span>
                                             )}
                                         </div>
                                     </div>
 
-                                    {/* Row 2 of form */}
+                                    
                                     <div className="mb-4">
                                         <input
                                             type="text"
@@ -131,15 +134,15 @@ const ContactForm = () => {
                                             {...register("subject", {
                                                 required: {
                                                     value: true,
-                                                    message: "Please enter a subject",
+                                                    message: t("contact-error-subject"),
                                                 },
                                                 maxLength: {
                                                     value: 75,
-                                                    message: "Subject cannot exceed 75 characters",
+                                                    message: t("contact-error-subject-length"),
                                                 },
                                             })}
                                             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                            placeholder="Subject"
+                                            placeholder={t("contact-subject")}
                                         />
                                         {errors.subject && (
                                             <span className="text-red-600 text-sm">
@@ -148,7 +151,7 @@ const ContactForm = () => {
                                         )}
                                     </div>
 
-                                    {/* Row 3 of form */}
+                                   
                                     <div className="mb-6">
                                         <textarea
                                             rows={3}
@@ -157,11 +160,11 @@ const ContactForm = () => {
                                                 required: true,
                                             })}
                                             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                            placeholder="Message"
+                                            placeholder={t("contact-message")}
                                         ></textarea>
                                         {errors.message && (
                                             <span className="text-red-600 text-sm">
-                                                Please enter a message
+                                                {t("contact-error-message")}
                                             </span>
                                         )}
                                     </div>
@@ -171,7 +174,7 @@ const ContactForm = () => {
                                         disabled={disabled}
                                         type="submit"
                                     >
-                                        Submit
+                                        {t("contact-submit")}
                                     </button>
                                 </form>
                             </div>

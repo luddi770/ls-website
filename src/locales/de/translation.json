@@ -1,0 +1,30 @@
+{
+  "nav-projects": "Projekte",
+  "nav-about-me": "Über mich",
+  "nav-contact": "Kontakt",
+  
+  "main-introduction": "Hi, Ich bin Ludwig Steinhorst",
+  "main-description": "Software & Web Entwickler",
+  
+  "about-description": "Ich bin Softwareentwickler und begeistert davon, wirkungsvolle Anwendungen zu entwickeln.",
+
+  "project-view-project": "Projekt anzeigen",
+
+  "contact-header": "Kontaktiere mich",
+  "contact-email-input": "Email Adresse",
+  "contact-subject": "Betreff",
+  "contact-message": "Nachricht",
+  "contact-submit": "Senden",
+
+
+  "contact-error-name": "Bitte geben Sie Ihren Namen ein",
+  "contact-error-name-length": "Bitte verwenden Sie maximal 30 Zeichen",
+  "contact-error-email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+  "contact-error-subject": "Bitte geben Sie einen Betreff ein",
+  "contact-error-subject-length": "Der Betreff darf nicht länger als 75 Zeichen sein.",
+  "contact-error-message": "Bitte geben Sie eine Nachricht ein",
+  
+  "welcome": "Willkommen auf meiner Webseite",
+  "languageButton": "src/assets/de.png"
+
+}

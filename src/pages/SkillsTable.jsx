@@ -3,12 +3,17 @@ import { FaPython, FaJsSquare, FaReact, FaNodeJs, FaDatabase } from "react-icons
 import { SiTailwindcss } from "react-icons/si";
 
 const skills = [
-    { name: "Python", level: 90, icon: <FaPython size={24} color="#3776AB" /> },
-    { name: "SQL", level: 90, icon: <FaDatabase size={24} color="#4479A1" /> },
-    { name: "JavaScript", level: 75, icon: <FaJsSquare size={24} color="#F7DF1E" /> },
-    { name: "React", level: 65, icon: <FaReact size={24} color="#61DAFB" /> },
-    { name: "Node.js", level: 55, icon: <FaNodeJs size={24} color="#339933" /> },
-    { name: "Tailwind CSS", level: 50, icon: <SiTailwindcss size={24} color="#38B2AC" /> },
+    { name: "Python", level: 80, icon: <FaPython size={24} color="#3776AB" /> },
+    { name: "SQL", level: 80, icon: <FaDatabase size={24} color="#4479A1" /> },
+    { name: "C", level: 75, icon: <i className="devicon-c-plain colored text-2xl" size={10} /> },
+    { name: "VisualBasic", level: 75, icon: <i className="devicon-visualbasic-plain colored text-2xl" size={10} /> },
+    { name: "C++", level: 65, icon: <i className="devicon-cplusplus-plain colored text-2xl" size={10} /> },
+    { name: "Java", level: 65, icon: <i className="devicon-java-plain colored text-2xl" size={10} /> },
+    { name: "JavaScript", level: 55, icon: <FaJsSquare size={24} color="#F7DF1E" /> },
+    { name: "React", level: 45, icon: <FaReact size={24} color="#61DAFB" /> },
+    { name: "Node.js", level: 35, icon: <FaNodeJs size={24} color="#339933" /> },
+    { name: "Tailwind CSS", level: 30, icon: <SiTailwindcss size={24} color="#38B2AC" /> },
+    
 ];
 
 export default function SkillsTable() {

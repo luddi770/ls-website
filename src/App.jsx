@@ -8,7 +8,11 @@ import Navbar from './pages/Navbar';
 
 
 
+import { Button } from './components/ui/button';
+
+
 export default function App() {
+ 
   return (
     <>
       <Navbar />

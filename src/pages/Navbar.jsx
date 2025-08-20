@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleLinkClick = () => setIsOpen(false);
+
+    const { t, i18n } = useTranslation();
+
+    const toggleLanguage = () => {
+        const newLang = i18n.language === "en" ? "de" : "en";
+        i18n.changeLanguage(newLang);
+    }
+  
 
     return (
         <nav className="bg-slate-900 text-white px-6 py-4 sticky top-0 z-50 shadow-md">
@@ -33,7 +42,7 @@ export default function Navbar() {
                             className="hover:text-sky-400 transition-colors"
                             onClick={handleLinkClick}
                         >
-                            Projects
+                            {t("nav-projects")}
                         </Link>
                     </li>
                     <li>
@@ -42,7 +51,7 @@ export default function Navbar() {
                             className="hover:text-sky-400 transition-colors"
                             onClick={handleLinkClick}
                         >
-                            About Me
+                            {t("nav-about-me")}
                         </Link>
                     </li>
                     <li>
@@ -51,10 +60,23 @@ export default function Navbar() {
                             className="hover:text-sky-400 transition-colors"
                             onClick={handleLinkClick}
                         >
-                            Contact
+                            {t("nav-contact")}
                         </Link>
                     </li>
+                    <li>
+                        <button
+                            onClick={toggleLanguage}
+                            className="hover:text-sky-400 transition-colors"
+                        >
+                            <img 
+                                src={t("languageButton")}
+                                className="w-8 h-8 rounded-full object-cover"
+                                />
+                        </button>
+                    </li>
                 </ul>
+
+          
 
                 {/* Mobile menu button */}
                 <button
@@ -75,7 +97,7 @@ export default function Navbar() {
                             onClick={handleLinkClick}
                             className="block hover:text-sky-400 transition-colors"
                         >
-                            Projects
+                            {t("nav-projects")}
                         </Link>
                     </li>
                     <li>
@@ -84,7 +106,7 @@ export default function Navbar() {
                             onClick={handleLinkClick}
                             className="block hover:text-sky-400 transition-colors"
                         >
-                            About Me
+                            {t("nav-about-me")}
                         </Link>
                     </li>
                     <li>
@@ -93,7 +115,7 @@ export default function Navbar() {
                             onClick={handleLinkClick}
                             className="block hover:text-sky-400 transition-colors"
                         >
-                            Contact
+                            {t("nav-contact")}
                         </Link>
                     </li>
                 </ul>
