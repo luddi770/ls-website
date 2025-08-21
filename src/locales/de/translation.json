@@ -25,6 +25,6 @@
   "contact-error-message": "Bitte geben Sie eine Nachricht ein",
   
   "welcome": "Willkommen auf meiner Webseite",
-  "languageButton": "src/assets/de.png"
+  "languageButton": "../assets/de.png"
 
 }
