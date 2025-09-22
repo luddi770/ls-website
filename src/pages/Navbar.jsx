@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import flagEn from '../assets/en.png';
+import flagDe from '../assets/de.png';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -10,9 +12,15 @@ export default function Navbar() {
 
     const { t, i18n } = useTranslation();
 
+    let flagPath = flagDe;
+    if(i18n.language === "de")
+            flagPath = flagEn;
+    
+
     const toggleLanguage = () => {
         const newLang = i18n.language === "en" ? "de" : "en";
-        i18n.changeLanguage(newLang);
+        i18n.changeLanguage(newLang);    
+        
     }
   
 
@@ -30,7 +38,7 @@ export default function Navbar() {
                         className="text-3xl font-extrabold animate-blink"
                         style={{ animationTimingFunction: "ease-in-out" }}
                     >
-                        &gt;
+                        &lt;Home&gt;
                     </span>
                 </Link>
 
@@ -69,7 +77,7 @@ export default function Navbar() {
                             className="hover:text-sky-400 transition-colors"
                         >
                             <img 
-                                src={t("languageButton")}
+                                src={flagPath}
                                 className="w-8 h-8 rounded-full object-cover"
                                 />
                         </button>

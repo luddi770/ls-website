@@ -7,6 +7,7 @@ export default function Home() {
         <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-700 text-white p-8 m-0">
             <h2 className="text-3xl font-semibold mb-6 text-center">{t("nav-about-me")}</h2>
             <div className="max-w-3xl mx-auto text-center text-slate-300">
+                <p className="mt-2 font-black">{t("about-description-header")}</p>
                 <p className="mt-2">{t("about-description")}</p>
             </div>
             <h2 className="text-3xl font-semibold mb-6 text-center"></h2>

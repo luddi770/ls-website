@@ -6,7 +6,8 @@
   "main-introduction": "Hi, I'm Ludwig Steinhorst",
   "main-description": "Software Engineer & Web Developer",
 
-  "about-description": "I'm a software developer passionate about building impactful applications.",
+  "about-description-header": "Hello, I'm Ludwig Steinhorst, passionate about developing smart, scalable applications.",
+  "about-description": "I completed a 2-year apprenticeship focused on database applications, expanded my expertise in system development and data analysis with my favorite languages, C and Python, during university, and gained hands-on experience in web development with JavaScript and React as a freelancer. Currently, I am freelancing while actively seeking a full-time position where I can contribute to impactful projects and further grow my skills through continuous learning.",
   
   "project-view-project": "View Project",
 
@@ -23,6 +24,6 @@
   "contact-error-subject-length": "Subject cannot exceed 75 characters",
   "contact-error-message": "Plesase enter a message",
 
-  "welcome": "Welcome to my website",
-  "languageButton": "../assets/en.png"
+  "welcome": "Welcome to my website"
+  
 }

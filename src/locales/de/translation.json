@@ -6,7 +6,8 @@
   "main-introduction": "Hi, Ich bin Ludwig Steinhorst",
   "main-description": "Software & Web Entwickler",
   
-  "about-description": "Ich bin Softwareentwickler und begeistert davon, wirkungsvolle Anwendungen zu entwickeln.",
+  "about-description-header":"Hallo, ich bin Ludwig Steinhorst, leidenschaftlich darin, intelligente und skalierbare Anwendungen zu entwickeln.",
+  "about-description": "Ich habe eine zweijährige Ausbildung mit Schwerpunkt auf Datenbankanwendungen abgeschlossen, während meines Studiums meine Kenntnisse in Systementwicklung und Datenanalyse mit meinen bevorzugten Sprachen C und Python vertieft und als Freelancer praktische Erfahrung in der Webentwicklung mit JavaScript und React gesammelt. Derzeit arbeite ich freiberuflich und bin aktiv auf der Suche nach einer Vollzeitstelle, in der ich zu wirkungsvollen Projekten beitragen und meine Fähigkeiten durch kontinuierliches Lernen weiter ausbauen kann.",
 
   "project-view-project": "Projekt anzeigen",
 
@@ -24,7 +25,6 @@
   "contact-error-subject-length": "Der Betreff darf nicht länger als 75 Zeichen sein.",
   "contact-error-message": "Bitte geben Sie eine Nachricht ein",
   
-  "welcome": "Willkommen auf meiner Webseite",
-  "languageButton": "../assets/de.png"
+  "welcome": "Willkommen auf meiner Webseite"
 
 }
