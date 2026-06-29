@@ -5,6 +5,7 @@ import About from './pages/About';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Navbar from './pages/Navbar';
+import Footer from './pages/Footer';
 
 
 
@@ -14,7 +15,7 @@ import { Button } from './components/ui/button';
 export default function App() {
  
   return (
-    <>
+    <div className='bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed'>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-    </>
+      <Footer />
+    </div>
   );
 }

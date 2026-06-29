@@ -3,7 +3,9 @@ import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
 import { useTranslation } from 'react-i18next';
 
-const ContactForm = () => {
+import myData from '../data/myData.json'
+
+const Contact = () => {
     const {
         register,
         handleSubmit,
@@ -17,33 +19,29 @@ const ContactForm = () => {
         type: '',
     });
 
-    // Shows alert message for form submission feedback
+
     const toggleAlert = (message, type) => {
         setAlertInfo({ display: true, message, type });
 
-        // Hide alert after 5 seconds
         setTimeout(() => {
             setAlertInfo({ display: false, message: '', type: '' });
         }, 5000);
     };
 
-    // Function called on submit that uses emailjs to send email of valid contact form
+    
     const onSubmit = async (data) => {
-        // Destrcture data object
         const { name, email, subject, message } = data;
         try {
             // Disable form while processing submission
             setDisabled(true);
 
-            // Define template params
             const templateParams = {
                 name,
                 email,
                 subject,
                 message,
             };
-
-            // Use emailjs to email contact form data
+            
             await emailjs.send(
                 import.meta.env.VITE_SERVICE_ID,
                 import.meta.env.VITE_TEMPLATE_ID,
@@ -51,162 +49,205 @@ const ContactForm = () => {
                 import.meta.env.VITE_PUBLIC_KEY,
             );
 
-            // Display success alert
             toggleAlert('Form submission was successful!', 'success');
         } catch (e) {
             console.error(e);
-            // Display error alert
             toggleAlert('Uh oh. Something went wrong.', 'danger');
         } finally {
             // Re-enable form submission
             setDisabled(false);
-            // Reset contact form fields after submission
             reset();
         }
     };
 
     const { t, i18n } = useTranslation();
 
-    return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-700 text-white p-8 m-0">
-            <div className="ContactForm p-8">
-                <h2 className='text-3xl font-semibold mb-6 text-center'>{t("contact-header")}</h2>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-col items-center">
-                        <div className="w-full text-center">
-                            <div className="contactForm">
-                                <form
-                                    id="contact-form"
-                                    onSubmit={handleSubmit(onSubmit)}
-                                    noValidate
-                                    className="space-y-6"
-                                >
-                                    
-                                    <div className="flex flex-wrap -mx-2">
-                                        <div className="w-full md:w-1/2 px-2 mb-4">
-                                            <input
-                                                type="text"
-                                                name="name"
-                                                {...register("name", {
-                                                    required: {
-                                                        value: true,
-                                                        message: t("contact-error-name"),
-                                                    },
-                                                    maxLength: {
-                                                        value: 30,
-                                                        message: t("contact-error-name-length"),
-                                                    },
-                                                })}
-                                                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                placeholder="Name"
-                                            />
-                                            {errors.name && (
-                                                <span className="text-red-600 text-sm">
-                                                    {errors.name.message}
-                                                </span>
-                                            )}
-                                        </div>
-                                        <div className="w-full md:w-1/2 px-2 mb-4">
-                                            <input
-                                                type="email"
-                                                name="email"
-                                                {...register("email", {
-                                                    required: true,
-                                                    pattern:
-                                                        /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                                                })}
-                                                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                placeholder={t("contact-email-input")}
-                                            />
-                                            {errors.email && (
-                                                <span className="text-red-600 text-sm">
-                                                    {t("contact-error-email")}
-                                                </span>
-                                            )}
-                                        </div>
-                                    </div>
+   return (
+  <main className="flex-grow">    
+    <section className="relative pt-xxl pb-xl px-lg">
+      <div className="max-w-container-max mx-auto relative z-10">
+        <div className="flex flex-col gap-md">
+          <span className="font-label-mono text-primary-fixed uppercase tracking-widest">
+            {t("contact-header")}
+          </span>
+          <h1 className="font-display-lg text-5xl md:text-7xl">
+            {t("contact-cta-header")}
+          </h1>
+          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-text-max">
+            {t("contact-cta-description")}
+          </p>
+        </div>
+      </div>
+    </section>
 
-                                    
-                                    <div className="mb-4">
-                                        <input
-                                            type="text"
-                                            name="subject"
-                                            {...register("subject", {
-                                                required: {
-                                                    value: true,
-                                                    message: t("contact-error-subject"),
-                                                },
-                                                maxLength: {
-                                                    value: 75,
-                                                    message: t("contact-error-subject-length"),
-                                                },
-                                            })}
-                                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                            placeholder={t("contact-subject")}
-                                        />
-                                        {errors.subject && (
-                                            <span className="text-red-600 text-sm">
-                                                {errors.subject.message}
-                                            </span>
-                                        )}
-                                    </div>
-
-                                   
-                                    <div className="mb-6">
-                                        <textarea
-                                            rows={3}
-                                            name="message"
-                                            {...register("message", {
-                                                required: true,
-                                            })}
-                                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                            placeholder={t("contact-message")}
-                                        ></textarea>
-                                        {errors.message && (
-                                            <span className="text-red-600 text-sm">
-                                                {t("contact-error-message")}
-                                            </span>
-                                        )}
-                                    </div>
-
-                                    <button
-                                        className="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700 transition duration-200 disabled:opacity-50"
-                                        disabled={disabled}
-                                        type="submit"
-                                    >
-                                        {t("contact-submit")}
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+    <section className="px-lg pb-xxl">
+      <div className="max-w-container-max mx-auto">
+        <div className="contact-grid">
+         
+          <div className="glass-panel p-lg rounded-xl">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              noValidate
+              className="space-y-lg"
+            >
+             
+              <div className="grid md:grid-cols-2 gap-lg">
+                <div>
+                  <label className="font-label-mono text-label-mono text-on-surface-variant">
+                    {t("contact-form-name")}
+                  </label>
+                  <input
+                    type="text"
+                    {...register("name", {
+                      required: { value: true, message: t("contact-error-name") },
+                      maxLength: { value: 30, message: t("contact-error-name-length") },
+                    })}
+                    placeholder={t("contact-form-name-example")}
+                    className="input-glow w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-md outline-none text-on-surface placeholder:text-on-surface-variant/30 font-body-md transition-all duration-300"
+                  />
+                  {errors.name && (
+                    <span className="text-red-400 text-sm mt-xs block">{errors.name.message}</span>
+                  )}
                 </div>
 
-                {alertInfo.display && (
-                    <div
-                        className={`mt-5 p-4 rounded-md ${alertInfo.type === "success"
-                            ? "bg-green-100 text-green-800"
-                            : "bg-red-100 text-red-800"
-                            } flex justify-between items-center`}
-                        role="alert"
-                    >
-                        <span>{alertInfo.message}</span>
-                        <button
-                            type="button"
-                            className="ml-4 text-xl font-semibold leading-none focus:outline-none"
-                            onClick={() =>
-                                setAlertInfo({ display: false, message: "", type: "" })
-                            }
-                        >
-                            &times;
-                        </button>
-                    </div>
+                <div>
+                  <label className="font-label-mono text-label-mono text-on-surface-variant">
+                    {t("contact-form-email")}
+                  </label>
+                  <input
+                    type="email"
+                    {...register("email", {
+                      required: true,
+                      pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                    })}
+                    placeholder={t("contact-form-email-example")}
+                    className="input-glow w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-md outline-none text-on-surface placeholder:text-on-surface-variant/30 font-body-md transition-all duration-300"
+                  />
+                  {errors.email && (
+                    <span className="text-red-400 text-sm mt-xs block">{t("contact-error-email")}</span>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <label className="font-label-mono text-label-mono text-on-surface-variant">
+                  {t("contact-form-subject")}
+                </label>
+                <input
+                  type="text"
+                  {...register("subject", {
+                    required: { value: true, message: t("contact-error-subject") },
+                    maxLength: { value: 75, message: t("contact-error-subject-length") },
+                  })}
+                  placeholder={t("contact-form-subject-example")}
+                  className="input-glow w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-md outline-none text-on-surface placeholder:text-on-surface-variant/30 font-body-md transition-all duration-300"
+                />
+                {errors.subject && (
+                  <span className="text-red-400 text-sm mt-xs block">{errors.subject.message}</span>
                 )}
+              </div>
+
+              <div>
+                <label className="font-label-mono text-label-mono text-on-surface-variant">
+                  {t("contact-form-message")}
+                </label>
+                <textarea
+                  rows={6}
+                  {...register("message", { required: true })}
+                  placeholder={t("contact-form-message-example")}
+                  className="input-glow w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-md outline-none text-on-surface placeholder:text-on-surface-variant/30 font-body-md transition-all duration-300"
+                />
+                {errors.message && (
+                  <span className="text-red-400 text-sm mt-xs block">{t("contact-error-message")}</span>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                disabled={disabled}
+                className="bg-primary-fixed text-on-primary-fixed hover:bg-primary-fixed-dim px-xl py-md rounded-lg font-medium transition disabled:opacity-50"
+              >
+                {t("contact-form-submit-btn")}
+              </button>
+            </form>
+          </div>
+
+   
+          <div className="space-y-6">
+            <div className="backdrop-blur-xl glass-panel border border-white/10 rounded-3xl p-lg">
+              <h3 className="font-headline-sm text-headline-sm mb-lg">
+                {t("contact-details-title")}
+              </h3>
+
+              <div className="space-y-5">
+                <div>
+                  <p className="font-label-mono text-label-mono text-on-surface-variant">Email</p>
+                  
+                  <a className="text-body-md text-on-surface hover:text-primary-fixed transition-colors"
+                    href={`mailto:${myData.email}`}
+                  >
+                    {myData.email}
+                  </a>
+                </div>
+
+                <div>
+                  <p className="font-label-mono text-label-mono text-on-surface-variant"> {t("contact-details-location-header")}</p>
+                  <p className="font-body-md text-on-surface">
+                    {t("contact-details-location")}
+                  </p>
+                </div>
+
+                <div className="relative h-64 w-full rounded-xl overflow-hidden border border-outline-variant/30">
+                  <iframe
+                    src={ myData['map-link']}
+                    className="w-full h-full"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center p-md border-t border-outline-variant/10">
+                
+                <a className="text-on-surface-variant hover:text-primary-fixed transition-all duration-300 hover:-translate-y-1"
+                  href={myData.github}
+                >
+                  <span className="font-label-mono text-label-mono">GitHub</span>
+                </a>
+                
+                <a className="text-on-surface-variant hover:text-primary-fixed transition-all duration-300 hover:-translate-y-1"
+                  href={myData.linkedin}
+                >
+                  <span className="font-label-mono text-label-mono">LinkedIn</span>
+                </a>
+              </div>
             </div>
+
+            {alertInfo.display && (
+              <div
+                className={`rounded-2xl p-md border ${
+                  alertInfo.type === "success"
+                    ? "bg-green-500/10 border-green-500/30 text-green-300"
+                    : "bg-red-500/10 border-red-500/30 text-red-300"
+                }`}
+              >
+                <div className="flex justify-between items-center">
+                  <span>{alertInfo.message}</span>
+                  <button
+                    onClick={() => setAlertInfo({ display: false, message: "", type: "" })}
+                  >
+                    ×
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-    );
+      </div>
+    </section>
+  </main>
+);
 };
 
-export default ContactForm;
+export default Contact;
 
 
